@@ -1,0 +1,21 @@
+{
+  "name": "快樂做自己｜線上名片（整理工具）",
+  "short_name": "快樂做自己",
+  "description": "用四張小卡整理現在的自己，搭配AI協作咒語一鍵複製，最後匯出名片資料包。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2f5d50",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

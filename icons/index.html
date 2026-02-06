@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>快樂做自己｜線上名片（整理工具）</title>
+  <meta name="description" content="快樂做自己｜線上名片：用四張小卡整理現在的自己，搭配AI協作咒語，一鍵複製；最後匯出名片資料包。">
+  <meta name="theme-color" content="#2f5d50">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top" id="navTop">
+      <div class="brand">
+        <h1>快樂做自己｜線上名片</h1>
+        <div class="sub">把心站穩、活得自在｜私密整理工具（可獨立安裝）</div>
+      </div>
+      <div class="pills">
+        <a class="pill" href="#tool" aria-current="true">開始整理</a>
+        <a class="pill" href="#help">說明 / 安裝</a>
+      </div>
+    </header>
+
+    <!-- 金句輪換 -->
+    <section class="card" id="quoteArea">
+      <div class="quoteBox">
+        <p class="quote" id="quoteText">「慢一點，也是在前進。」</p>
+        <div class="qtools">
+          <button class="iconbtn" id="quoteNext" type="button" title="換一句">換一句</button>
+          <label class="iconbtn" style="display:flex;gap:8px;align-items:center">
+            <input type="checkbox" id="quoteToggle" style="margin:0">
+            金句
+          </label>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="small">你可以在下方新增多句（每行一句）。每次刷新頁面會自動換一句。</div>
+      <textarea id="quoteList" class="break-safe" aria-label="金句清單"></textarea>
+    </section>
+
+    <!-- Page: Tool -->
+    <main id="pageTool">
+      <section class="card">
+        <div class="stepbar" role="tablist" aria-label="步驟">
+          <button class="stepbtn" data-step="1" aria-current="true" type="button">1｜稱呼小卡</button>
+          <button class="stepbtn" data-step="2" type="button">2｜注意力小卡</button>
+          <button class="stepbtn" data-step="3" type="button">3｜自我價值小卡</button>
+          <button class="stepbtn" data-step="4" type="button">4｜生活方向小卡</button>
+          <button class="stepbtn" data-step="5" type="button">5｜整體照見</button>
+          <button class="stepbtn" data-step="6" type="button">6｜名片資料包</button>
+        </div>
+        <p class="hint">
+          溫暖提醒：不用刻意美化想法。這裡是屬於自己的私密空間。你只要寫「關鍵字」，剩下交給 AI 協作咒語。
+        </p>
+      </section>
+
+      <!-- Step 1 -->
+      <section class="card stepPanel" data-step="1">
+        <h2>1｜認識現在的自己｜稱呼小卡</h2>
+        <p class="hint">先把「在意的事」與「我自然會帶給別人的」放在桌上，讓你看見：現在的你，長什麼樣子。</p>
+
+        <div class="kv">
+          <div>
+            <label>在意的事（可複選）</label>
+            <div class="checks" id="worriesChecks"></div>
+            <input id="worriesOther" type="text" placeholder="其他：用關鍵字即可（例：家人、時間、睡不好）" class="break-safe">
+          </div>
+
+          <div>
+            <label>可以分享給別人的（可複選）</label>
+            <div class="checks" id="shareChecks"></div>
+            <input id="shareOther" type="text" placeholder="其他：用關鍵字即可" class="break-safe">
+          </div>
+
+          <div>
+            <label>生活重心方向（可複選）</label>
+            <div class="checks" id="dirChecks"></div>
+            <input id="dirOther" type="text" placeholder="其他：用關鍵字即可" class="break-safe">
+          </div>
+
+          <div>
+            <label>補充（想怎麼寫都可以）</label>
+            <textarea id="card1Notes" class="break-safe" placeholder="例：最近腦袋很吵，但又不想把事情說得很大。"></textarea>
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="copyPrompt1" type="button">一鍵複製｜AI 協作咒語</button>
+          <span class="small">（把咒語貼到你習慣的 AI 對話框就好）</span>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="card stepPanel" data-step="2" hidden>
+        <h2>2｜常關注什麼｜注意力小卡</h2>
+        <p class="hint">題目只有一句：最近，哪些事情最常佔住你的心？你只要勾選＋補充一點點。</p>
+
+        <div class="kv">
+          <div>
+            <label>我最近最常關注（可複選）</label>
+            <div class="checks" id="focusChecks"></div>
+            <input id="focusOther" type="text" placeholder="其他：＿＿＿＿" class="break-safe">
+          </div>
+
+          <div>
+            <label>補充</label>
+            <textarea id="card2Notes" class="break-safe" placeholder="例：明明沒事，心卻一直掛著。"></textarea>
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="copyPrompt2" type="button">一鍵複製｜AI 協作咒語</button>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="card stepPanel" data-step="3" hidden>
+        <h2>3｜可以分享什麼｜自我價值小卡</h2>
+        <p class="hint">不需要把自己包裝成厲害的人。只要誠實描述：你如實存在時，會自然外溢什麼。</p>
+
+        <div class="kv">
+          <div>
+            <label>我可能自然分享給別人的（可複選）</label>
+            <div class="checks" id="giftsChecks"></div>
+            <input id="giftsOther" type="text" placeholder="其他：＿＿＿＿" class="break-safe">
+          </div>
+
+          <div>
+            <label>補充</label>
+            <textarea id="card3Notes" class="break-safe" placeholder="例：我不太會說大道理，但我會陪著你把事講清楚。"></textarea>
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="copyPrompt3" type="button">一鍵複製｜AI 協作咒語</button>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="card stepPanel" data-step="4" hidden>
+        <h2>4｜往哪裡走｜生活方向小卡</h2>
+        <p class="hint">這一步不訂目標，只是幫你把「現在站在哪裡」說清楚。</p>
+
+        <div class="kv">
+          <div>
+            <label>我的生活比較朝哪個方向走？（單選）</label>
+            <select id="dirSelect" style="width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:15px;background:#fff;color:var(--ink)"></select>
+            <div id="dirOtherWrap" style="margin-top:10px" hidden>
+              <input id="dirOther2" type="text" placeholder="其他：＿＿＿＿" class="break-safe">
+            </div>
+          </div>
+
+          <div>
+            <label>補充</label>
+            <textarea id="card4Notes" class="break-safe" placeholder="例：我不是不想前進，是需要先穩定一下。"></textarea>
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="copyPrompt4" type="button">一鍵複製｜AI 協作咒語</button>
+        </div>
+      </section>
+
+      <!-- Step 5 -->
+      <section class="card stepPanel" data-step="5" hidden>
+        <h2>5｜請 AI 協助我整體認識現在的自己</h2>
+        <p class="hint">把你從 AI 拿到的整理結果貼回來。這裡只做「照見」，不做「改造」。</p>
+
+        <div class="kv">
+          <div>
+            <label>稱呼候選（AI回覆貼這裡）</label>
+            <textarea id="outNick" class="break-safe" placeholder="貼上：3～5個稱呼＋短說明"></textarea>
+          </div>
+          <div>
+            <label>常關注什麼（AI回覆貼這裡）</label>
+            <textarea id="outFocus" class="break-safe" placeholder="貼上：關注重心＋一句話"></textarea>
+          </div>
+          <div>
+            <label>可以分享什麼（AI回覆貼這裡）</label>
+            <textarea id="outGifts" class="break-safe" placeholder="貼上：自然外溢＋一句話"></textarea>
+          </div>
+          <div>
+            <label>往哪裡走（AI回覆貼這裡）</label>
+            <textarea id="outDir" class="break-safe" placeholder="貼上：生活方向＋一句話"></textarea>
+          </div>
+          <div>
+            <label>一句代表現在的我（AI回覆貼這裡）</label>
+            <input id="outOneLine" type="text" class="break-safe" placeholder="例：我正在把自己放好。">
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="copyPromptAll" type="button">一鍵複製｜整體照見咒語</button>
+          <span class="small">（把上面四段填好後再用更順）</span>
+        </div>
+      </section>
+
+      <!-- Step 6 -->
+      <section class="card stepPanel" data-step="6" hidden>
+        <h2>6｜把它變成名片｜名片資料包</h2>
+        <p class="hint">
+          這一步會把你的內容打包成一段「可複製的資料包」。之後你可以把它貼到「名片展示 PWA」裡，直接生成可公開的名片。
+        </p>
+
+        <div class="kv">
+          <div class="row">
+            <div>
+              <label>Email（選填）</label>
+              <input id="email" type="email" placeholder="name@example.com" class="break-safe">
+            </div>
+            <div>
+              <label>社群/網站連結（選填，一行一個）</label>
+              <textarea id="links" class="url-break" placeholder="https://...\nhttps://..."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <label>替代句（可說出口，按一下就複製）</label>
+            <div class="row">
+              <input id="altLine" type="text" class="break-safe" placeholder="按右側按鈕生成">
+              <button class="btn secondary" id="copyAltLine" type="button">生成＋複製</button>
+            </div>
+            <p class="small">這句會比較「能說出口」，讓你在現場也用得上。</p>
+          </div>
+
+          <div>
+            <label>名片資料包（按下方按鈕產生，會自動複製）</label>
+            <pre class="mono" id="bundlePreview">{}</pre>
+          </div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="exportBundle" type="button">一鍵產生＋複製｜名片資料包</button>
+          <button class="btn ghost" id="resetAll" type="button">清空全部</button>
+          <a class="btn secondary" id="feedbackLink" href="#" target="_blank" rel="noopener" hidden>回饋表單</a>
+          <a class="btn secondary url-break" id="cardLink" href="#" target="_blank" rel="noopener" hidden></a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Page: Help -->
+    <main id="pageHelp" hidden>
+      <section class="card">
+        <h2>說明頁</h2>
+        <p class="hint">
+          這個工具的目標很單純：<br>
+          <strong>陪你把「現在的自己」整理清楚</strong>，然後匯出成「名片資料包」，未來可以做成可公開的線上名片。
+        </p>
+
+        <div class="hr"></div>
+
+        <h2>安裝說明</h2>
+        <p>
+          1) 你可以先把這個工具的網址<strong>複製網址貼到瀏覽器</strong>開啟。<br>
+          2) Android：Chrome 右上角 ⋮ → <strong>加入主畫面</strong>。<br>
+          3) iPhone：Safari 分享 → <strong>加入主畫面</strong>。<br>
+          4) 安裝後就像 App 一樣可直接開啟使用。
+        </p>
+
+        <div class="hr"></div>
+
+        <h2>資料存放</h2>
+        <p>
+          你填寫的內容會保存在本機（localStorage），不會自動上傳。這裡就是你的私密空間。
+          如果你要換手機或備份，請到步驟 6 產生「名片資料包」自行保存。
+        </p>
+
+        <div class="hr"></div>
+
+        <h2>Google 表單（預留）</h2>
+        <p class="small">欄位建議：使用情境、卡在哪一步、最有感一句、想新增什麼、Email（可選）。</p>
+      </section>
+    </main>
+
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+</body>
+</html>
